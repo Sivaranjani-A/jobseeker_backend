@@ -11,7 +11,7 @@ router.post("/", async function (request, response) {
   const data = request.body;
   const jobs = await addJobs(data);
 
-  response.send("successfully added");
+  response.send("successfully added..");
 });
 
 export default router;
