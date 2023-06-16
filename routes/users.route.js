@@ -175,6 +175,7 @@ router.get("/profile/:email", async function (request, response) {
 });
 router.put("/profile/:email", async function (request, response) {
   const { email } = request.params;
+
   const {
     Name,
     DOB,
