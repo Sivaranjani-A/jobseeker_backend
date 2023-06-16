@@ -7,6 +7,7 @@ import {
   addUser,
   addprofile,
   getUserByUsername,
+  getUsers,
   updateUser,
   updateUserByemail,
   updateprofile,
@@ -176,21 +177,37 @@ router.put("/profile/:email", async function (request, response) {
   const { email } = request.params;
   const {
     Name,
+    DOB,
     Contact_Number,
     Whatsapp_Number,
     Educational_Qualification,
     Experience,
+    Resume,
   } = request.body;
 
   const profile = await updateprofile(
     email,
     Name,
+    DOB,
     Contact_Number,
     Whatsapp_Number,
     Educational_Qualification,
-    Experience
+    Experience,
+    Resume
   );
 
   response.send({ message: "Profile Updated" });
+});
+router.get("/getlist", async function (request, response) {
+  const users = await getUsers();
+
+  response.send(users);
+});
+router.get("/:email", async function (request, response) {
+  const { email } = request.params;
+
+  const userFromDB = await getUserByUsername(email);
+
+  response.send(userFromDB);
 });
 export default router;
