@@ -31,10 +31,10 @@ router.post("/register", async function (request, response) {
   const userFromDB = await getUserByUsername(email);
 
   if (userFromDB) {
-    response.status(400).send({ message: "username already exist try others" });
+    response.send({ message: "username already exist try others" });
   } else if (password.length < 8) {
     response
-      .status(400)
+      
       .send({ message: "password min 8 characters required" });
   } else {
     const hashedPassword = await generateHashedPassword(password);
